@@ -1,53 +1,69 @@
 {
-    "version": 5,
+    "version": 9,
     "configurePresets": [
         {
-            "name": "conf-base",
+            "name": "conf-light-base",
             "hidden": true,
             "binaryDir": "${sourceDir}/build",
             "generator": "Ninja"
         },
         {
-            "name": "conf-host-base",
-            "inherits": ["conf-base"],
+            "$comment": "host based applications default to INFO level log output",
+            "name": "conf-light-host-base",
+            "inherits": ["conf-light-base"],
             "hidden": true,
             "cacheVariables": {
                 "LIGHT_PLATFORM": "HOST",
-                "LIGHT_SYSTEM": "HOST_SYSTEM"
+                "LIGHT_SYSTEM": "HOST_SYSTEM",
+                "LIGHT_GENERATE_LOG_LEVEL": "INFO",
+                "LIGHT_LOG_LEVEL_DEFAULT": "INFO"
             }
         },
         {
-            "name": "conf-host-debug",
-            "inherits": ["conf-host-base"],
-            "cacheVariables": {
-                "LIGHT_RUN_MODE": "DEBUG"
-            }
-        },
-        {
-            "name": "conf-debug",
-            "hidden": true,
+            "name": "conf-light-host-debug",
             "inherits": [
-                "conf-base"
-            ],
+                "conf-light-host-base",
+                "conf-light-debug"
+            ]
+        },
+        {
+            "name": "conf-light-host-release",
+            "inherits": [
+                "conf-light-host-base",
+                "conf-light-release"
+            ]
+        },
+        {
+            "name": "conf-light-debug",
+            "hidden": true,
+            "inherits": ["conf-light-base"],
             "cacheVariables": {
                 "LIGHT_RUN_MODE": "DEBUG",
                 "CMAKE_BUILD_TYPE": "Debug"
             }
         },
         {
-            "name": "conf-pico-base",
+            "name": "conf-light-release",
+            "inherits": ["conf-light-base"],
+            "cacheVariables": {
+                "LIGHT_RUN_MODE": "PRODUCTION",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "conf-light-pico-base",
             "hidden": true,
             "inherits": [
-                "conf-base"
+                "conf-light-base"
             ],
             "cacheVariables": {
                 "LIGHT_SYSTEM": "PICO_SDK"
             }
         },
         {
-            "name": "conf-pico",
+            "name": "conf-light-pico",
             "inherits": [
-                "conf-pico-base"
+                "conf-light-pico-base"
             ],
             "cacheVariables": {
                 "LIGHT_PLATFORM": "TARGET",
@@ -55,30 +71,33 @@
             }
         },
         {
-            "name": "conf-pico-host",
+            "name": "conf-light-pico2",
             "inherits": [
-                "conf-pico-base"
+                "conf-light-pico-base"
+            ],
+            "cacheVariables": {
+                "LIGHT_PLATFORM": "TARGET",
+                "LIGHT_BOARD": "pico2"
+            }
+        },
+        {
+            "name": "conf-light-pico_w",
+            "inherits": [
+                "conf-light-pico-base"
+            ],
+            "cacheVariables": {
+                "LIGHT_PLATFORM": "TARGET",
+                "LIGHT_BOARD": "pico_w"
+            }
+        },
+        {
+            "name": "conf-light-pico-host",
+            "inherits": [
+                "conf-light-pico-base"
             ],
             "cacheVariables": {
                 "LIGHT_PLATFORM": "HOST"
             }
-        },
-        {
-            "name": "conf-host-debug",
-            "inherits": [
-                "conf-debug",
-                "conf-host"
-            ]
-        }
-    ],
-    "buildPresets": [
-        {
-            "name": "build-debug",
-            "configurePreset": "conf-debug",
-            "inheritConfigureEnvironment": true,
-            "targets": [
-                "framework_demo"
-            ]
         }
     ]
 }
