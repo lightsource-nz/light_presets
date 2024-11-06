@@ -8,7 +8,6 @@
             "generator": "Ninja"
         },
         {
-            "$comment": "host based applications default to INFO level log output",
             "name": "conf-light-host-base",
             "inherits": ["conf-light-base"],
             "hidden": true,
@@ -17,6 +16,24 @@
                 "LIGHT_SYSTEM": "HOST_SYSTEM",
                 "LIGHT_GENERATE_LOG_LEVEL": "INFO",
                 "LIGHT_LOG_LEVEL_DEFAULT": "INFO"
+            }
+        },
+        {
+            "name": "conf-light-debug",
+            "hidden": true,
+            "inherits": ["conf-light-base"],
+            "cacheVariables": {
+                "LIGHT_RUN_MODE": "DEBUG",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "conf-light-release",
+            "hidden": true,
+            "inherits": ["conf-light-base"],
+            "cacheVariables": {
+                "LIGHT_RUN_MODE": "PRODUCTION",
+                "CMAKE_BUILD_TYPE": "Release"
             }
         },
         {
@@ -32,23 +49,6 @@
                 "conf-light-host-base",
                 "conf-light-release"
             ]
-        },
-        {
-            "name": "conf-light-debug",
-            "hidden": true,
-            "inherits": ["conf-light-base"],
-            "cacheVariables": {
-                "LIGHT_RUN_MODE": "DEBUG",
-                "CMAKE_BUILD_TYPE": "Debug"
-            }
-        },
-        {
-            "name": "conf-light-release",
-            "inherits": ["conf-light-base"],
-            "cacheVariables": {
-                "LIGHT_RUN_MODE": "PRODUCTION",
-                "CMAKE_BUILD_TYPE": "Release"
-            }
         },
         {
             "name": "conf-light-pico-base",
