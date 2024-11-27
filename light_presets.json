@@ -41,6 +41,15 @@
             }
         },
         {
+            "name": "conf-light-trace",
+            "hidden": true,
+            "inherits": ["conf-light-base"],
+            "cacheVariables": {
+                "LIGHT_RUN_MODE": "TRACE",
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
             "name": "conf-light-release",
             "hidden": true,
             "inherits": ["conf-light-base"],
@@ -54,6 +63,13 @@
             "inherits": [
                 "conf-light-host-base",
                 "conf-light-debug"
+            ]
+        },
+        {
+            "name": "conf-light-host-trace",
+            "inherits": [
+                "conf-light-host-base",
+                "conf-light-trace"
             ]
         },
         {
