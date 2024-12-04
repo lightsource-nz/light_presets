@@ -13,7 +13,7 @@
             "hidden": true,
             "cacheVariables": {
                 "LIGHT_PLATFORM": "HOST",
-                "LIGHT_SYSTEM": "HOST_SYSTEM",
+                "LIGHT_SYSTEM": "HOST_OS",
                 "LIGHT_GENERATE_LOG_LEVEL": "INFO",
                 "LIGHT_LOG_LEVEL_DEFAULT": "INFO"
             }
