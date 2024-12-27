@@ -19,16 +19,25 @@
             }
         },
         {
-            "name": "conf-light-pico",
+            "name": "conf-light-pico-base",
             "hidden": true,
             "inherits": [
                 "conf-light-base"
             ],
             "cacheVariables": {
                 "LIGHT_SYSTEM": "PICO_SDK",
-                "LIGHT_PLATFORM": "TARGET",
-                "LIGHT_BOARD": "pico",
                 "PICO_SDK_PATH": "$env{PICO_SDK_PATH}"
+            }
+        },
+        {
+            "name": "conf-light-pico",
+            "hidden": true,
+            "inherits": [
+                "conf-light-pico-base"
+            ],
+            "cacheVariables": {
+                "LIGHT_PLATFORM": "TARGET",
+                "LIGHT_BOARD": "pico"
             }
         },
         {
@@ -96,7 +105,7 @@
         {
             "name": "conf-light-pico2",
             "inherits": [
-                "conf-light-pico"
+                "conf-light-pico-base"
             ],
             "cacheVariables": {
                 "LIGHT_BOARD": "pico2"
@@ -105,7 +114,7 @@
         {
             "name": "conf-light-pico_w",
             "inherits": [
-                "conf-light-pico"
+                "conf-light-pico-base"
             ],
             "cacheVariables": {
                 "LIGHT_BOARD": "pico_w"
@@ -114,7 +123,7 @@
         {
             "name": "conf-light-pico-host",
             "inherits": [
-                "conf-light-pico",
+                "conf-light-pico-base",
                 "conf-light-debug"
             ],
             "cacheVariables": {
