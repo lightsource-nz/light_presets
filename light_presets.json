@@ -4,8 +4,17 @@
         {
             "name": "conf-light-base",
             "hidden": true,
+            "generator": "Ninja",
             "binaryDir": "${sourceDir}/build",
-            "generator": "Ninja"
+            "installDir": "${sourceDir}/stage",
+            "cacheVariables": {
+              "CMAKE_PREFIX_PATH": {
+                "type": "path",
+                "value": "${sourceDir}/stage"
+              },
+              "CMAKE_C_STANDARD": "11",
+              "CMAKE_C_STANDARD_REQUIRED": true
+            }
         },
         {
             "name": "conf-light-host-base",
@@ -16,28 +25,6 @@
                 "LIGHT_SYSTEM": "HOST_OS",
                 "LIGHT_GENERATE_LOG_LEVEL": "INFO",
                 "LIGHT_LOG_LEVEL_DEFAULT": "INFO"
-            }
-        },
-        {
-            "name": "conf-light-pico-base",
-            "hidden": true,
-            "inherits": [
-                "conf-light-base"
-            ],
-            "cacheVariables": {
-                "LIGHT_SYSTEM": "PICO_SDK",
-                "PICO_SDK_PATH": "$env{PICO_SDK_PATH}"
-            }
-        },
-        {
-            "name": "conf-light-pico",
-            "hidden": true,
-            "inherits": [
-                "conf-light-pico-base"
-            ],
-            "cacheVariables": {
-                "LIGHT_PLATFORM": "TARGET",
-                "LIGHT_BOARD": "pico"
             }
         },
         {
@@ -87,50 +74,6 @@
                 "conf-light-host-base",
                 "conf-light-release"
             ]
-        },
-        {
-            "name": "conf-light-pico-debug",
-            "inherits": [
-                "conf-light-pico",
-                "conf-light-debug"
-            ]
-        },
-        {
-            "name": "conf-light-pico-release",
-            "inherits": [
-                "conf-light-pico",
-                "conf-light-release"
-            ]
-        },
-        {
-            "name": "conf-light-pico2",
-            "inherits": [
-                "conf-light-pico-base"
-            ],
-            "cacheVariables": {
-                "LIGHT_BOARD": "pico2"
-            }
-        },
-        {
-            "name": "conf-light-pico_w",
-            "inherits": [
-                "conf-light-pico-base"
-            ],
-            "cacheVariables": {
-                "LIGHT_BOARD": "pico_w"
-            }
-        },
-        {
-            "name": "conf-light-pico-host",
-            "inherits": [
-                "conf-light-pico-base",
-                "conf-light-debug"
-            ],
-            "cacheVariables": {
-                "LIGHT_PLATFORM": "HOST",
-                "LIGHT_BOARD": "pico_hostmode",
-                "PICO_BOARD": "none"
-            }
         }
     ]
 }
