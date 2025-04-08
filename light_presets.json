@@ -37,6 +37,15 @@
             }
         },
         {
+            "name": "conf-light-debug-addrsan",
+            "hidden": true,
+            "inherits": ["conf-light-debug"],
+            "cacheVariables": {
+                "SANITIZE_ADDRESS": "On",
+                "LIGHT_CORE_ENABLE_SANITIZERS": "On"
+            }
+        },
+        {
             "name": "conf-light-trace",
             "hidden": true,
             "inherits": ["conf-light-base"],
